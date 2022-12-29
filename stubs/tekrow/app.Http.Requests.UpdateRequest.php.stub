@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Models\{{ DummyText }};
+use Gate;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
+
+class Update{{ DummyText }}Request extends FormRequest
+{
+    public function authorize()
+    {
+        return Gate::allows('{{ dummy_text }}_edit');
+    }
+
+    public function rules()
+    {
+        $rules = {{ DummyText }}::$rules;
+                $rules['name'] = $rules['name'] . ',name,' . $this->id;
+                return $rules;
+    }
+}
